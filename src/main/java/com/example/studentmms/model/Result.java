@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Map;
+
 @Data
 @Document
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
-    private String name;
-    private String index_no;
-    private String school;
-    private String teacher;
-    private Subject subjects[];
+public class Result {
+    private String student;
+    private String year;
+    private Term term;
+    private Map<Subject,Integer> marks;
 }
