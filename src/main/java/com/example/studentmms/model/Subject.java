@@ -7,5 +7,7 @@ public enum Subject {
     PHYSICS,
     ACCOUNTING,
     ECON,
-    ICT
+    ICT,
+    MUSIC,
+    HISTORY
 }

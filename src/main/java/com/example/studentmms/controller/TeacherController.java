@@ -28,6 +28,11 @@ public class TeacherController {
         return "login";
     }
 
+    @GetMapping("teacher/home")
+    public String teacherHome(){
+        return "teacher-home";
+    }
+
     @PostMapping("add/teacher")
     public ResponseEntity<?> addTeacher(@RequestBody Teacher teacher){
         try{
