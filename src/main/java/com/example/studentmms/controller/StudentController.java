@@ -21,7 +21,7 @@ public class StudentController {
     StudentService studentService;
     @GetMapping("/student/add")
     public String showAddStudent(Model model){
-
+        System.out.println("add student");
         model.addAttribute("student",new Student());
         return "add-student";
     }
