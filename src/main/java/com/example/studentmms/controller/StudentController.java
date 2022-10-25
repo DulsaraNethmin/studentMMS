@@ -26,6 +26,13 @@ public class StudentController {
         return "add-student";
     }
 
+    @GetMapping("/student/show")
+    public String showStudentshow(Model model){
+        System.out.println("show student");
+        model.addAttribute("student",new Student());
+        return "show-student";
+    }
+
     @PostMapping("/student/add")
     public String addStudent(@ModelAttribute Student student, BindingResult result, Model model){
         System.out.println(student.toString());
