@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Teacher {
     @Id
     private String Id;
+    private String teacher_id;
     private String name;
     private String email;
     private String password;
