@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,5 +24,10 @@ public class StudentService {
     public List<Student> getStudentBYTeacher(String teacher_id){
         List<Student> students = studentRepository.findByTeacherId(teacher_id);
         return students;
+    }
+
+    public Student updateStudent(String Index,Student Student){
+        List<Student> students = null;
+        students.stream().filter(c->)
     }
 }

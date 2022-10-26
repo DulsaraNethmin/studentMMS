@@ -14,6 +14,7 @@
     <th scope="col">Index</th>
     <th scope="col">Name</th>
     <th scope="col">Add result</th>
+    <th scope="col">Update Student</th>
   </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
     <td th:text="${std.index_no}"/>
     <td th:text="${std.name}"/>
     <td> <a class="btn btn-primary gs" href="/add/result">Add result</a></td>
+    <td><a class="btn btn-primary gs" th:href="@{'/update/'+${std.index_no}}">Update Student</a> </td>
   </tr>
   </tbody>
 </table>
