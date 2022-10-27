@@ -11,15 +11,15 @@
   <div class="card-body">
     <div class="col-md-10">
       <form  method="post"
-             th:action="@{/add/result}" th:object="${result}" >
+             th:action="@{/result/add}" th:object="${result}" >
         <div class="row">
 
           <div class="form-group col-md-8">
-            <label class="col-form-label" th:text="${student.name}"/>
+            <label class="col-form-label" />
           </div>
 
           <div class="form-group col-md-8">
-            <label class="col-form-label" th:text="${student.index_no}"/>
+            <label class="col-form-label" />
           </div>
 
           <div class="form-group col-md-8">
@@ -28,9 +28,9 @@
 
           <div class="form-group col-md-8">
             <select class="form-select" aria-label="Default select example" th:field="*{term}">
-              <option selected value="MATHS">FIRST_TERM</option>
-              <option value="ACCOUNTING">SECOND_TERM</option>
-              <option value="MUSIC">THIRD_TERM</option>
+              <option selected value="FIRST_TERM">FIRST_TERM</option>
+              <option value="SECOND_TERM">SECOND_TERM</option>
+              <option value="THIRD_TERM">THIRD_TERM</option>
             </select>
           </div>
 
@@ -40,12 +40,15 @@
           </div>
           <br/>
           <div class="form-group col-md-8">
+            <label class="col-form-label" th:text="${student.subjects[0]}"/>
             <input class="form-control" id="sub1" placeholder="Result" th:field="*{marks}" type="number">
           </div>
           <div class="form-group col-md-8">
+            <label class="col-form-label" th:text="${student.subjects[1]}"/>
             <input class="form-control" id="sub2" placeholder="Result" th:field="*{marks}" type="number">
           </div>
           <div class="form-group col-md-8">
+            <label class="col-form-label" th:text="${student.subjects[2]}"/>
             <input class="form-control" id="sub3" placeholder="Result" th:field="*{marks}" type="number">
           </div>
 
@@ -59,5 +62,11 @@
     </div>
   </div>
 </div>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+    name=[[${student.name}]]
+    alert(name)
+  /*]]>*/
+</script>
 </body>
 </html>

@@ -42,14 +42,14 @@ public class StudentController {
     public String addStudent(@ModelAttribute Student student, BindingResult result, Model model){
         System.out.println(student.toString());
 
-        model.addAttribute("Student",new Student());
+        //model.addAttribute("Student",new Student());
         try{
             Student res=studentService.addStudent(student);
             return "redirect:";
             //return new ResponseEntity("Success",HttpStatus.OK);
         }catch(Exception e){
             //return new ResponseEntity("Internal Server Error.",HttpStatus.INTERNAL_SERVER_ERROR);
-            return "";
+            return "error";
         }
         //return "index";
     }
