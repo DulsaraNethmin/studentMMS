@@ -1,7 +1,6 @@
 package com.example.studentmms.controller;
 
 import com.example.studentmms.model.Student;
-import com.example.studentmms.model.Subject;
 import com.example.studentmms.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class StudentController {
@@ -51,10 +51,66 @@ public class StudentController {
         }
         //return "index";
     }
-    @PutMapping("/update/{Index}")
-    public Student updateStudent(@PathVariable("Index") String index, @RequestBody Student student){
+    @GetMapping("/student/{index}")
+    public ResponseEntity<?> getSinglestudent(@PathVariable("index") String index){
+        try{
+            Student res = studentService.getStudentById(index);
+            return new ResponseEntity(res,HttpStatus.OK);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<String>("Internal server error..", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @GetMapping("/update/{id}")
+    public String handleStudentUpdate(@PathVariable("id") String id,Model model) {
+
+ model.addAttribute("editStudent",studentService.getStudentById(id));
+ return "edit_student";
 
     }
 
+    @PostMapping("/update/{id}")
+    public String updateStudent(@PathVariable("id") String id,@ModelAttribute("editStudent") Student student,Model model){
+        Student s=studentService.getStudentById(id);
+        student.setIndex_no(s.getIndex_no());
+        student.setTeacher(s.getTeacher());
+        student.setSubjects(s.getSubjects());
+        student.setSchool(s.getSchool());
+        studentService.updateStudent(student);
+        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        System.out.println(students.size());
+        model.addAttribute("students",students);
+        return "show-student";
+    }
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> updateStudent(@PathVariable("id") String id, @RequestBody Student st){
+//        Optional <Student> student=studentService.getStudent(id);
+//        if(student.isPresent()){
+//            Student st1=student.get();
+//            st1.setName(st.getName()!=null?st.getName():st1.getName());
+//            studentService.saveUpdated(st1);
+//            return  new ResponseEntity<>(st1,HttpStatus.OK);
+//        }
+//        else {
+//            return new ResponseEntity<>("There is no any matching values",HttpStatus.NOT_FOUND);
+//        }
+//    }
+//
+//    @DeleteMapping("/delete/{index}")
+//    public ResponseEntity<?> deleteStudent(@PathVariable("index") String index_No){
+//        try {
+//             studentService.delete(index_No);
+//             return new ResponseEntity<>("Item deleted",HttpStatus.OK);
+//        }catch (Exception e)
+//        {
+//              return new ResponseEntity<>("Not deleted",HttpStatus.NOT_FOUND);
+//        }
+    }
 
-}
+
+
+
+
+
+
