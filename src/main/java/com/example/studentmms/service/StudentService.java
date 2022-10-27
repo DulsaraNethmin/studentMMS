@@ -26,8 +26,12 @@ public class StudentService {
         return students;
     }
 
-    public Student updateStudent(String Index,Student Student){
-        List<Student> students = null;
-        students.stream().filter(c->)
+
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
+
+    public Student getStudentById(String id) {
+        return studentRepository.findById(id).get();
     }
 }

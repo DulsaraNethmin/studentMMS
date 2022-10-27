@@ -23,7 +23,7 @@
     <td th:text="${std.index_no}"/>
     <td th:text="${std.name}"/>
     <td> <a class="btn btn-primary gs" href="/add/result">Add result</a></td>
-    <td><a class="btn btn-primary gs" th:href="@{'/update/'+${std.index_no}}">Update Student</a> </td>
+    <td><a class="btn btn-primary gs" th:href="@{/update/{id}(id=${std.id})}">Update Student</a> </td>
   </tr>
   </tbody>
 </table>
