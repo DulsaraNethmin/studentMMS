@@ -52,7 +52,9 @@ public class ResultController {
     public String search(@ModelAttribute Search search,BindingResult res,Model model){
         try{
             Result result=resultService.search(search);
+            Student student = studentService.getStudentById(result.getIndex_no());
             model.addAttribute("result",result);
+            model.addAttribute("student",student);
             System.out.println(result);
             return "index";
         }catch(Exception e){
