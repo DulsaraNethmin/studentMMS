@@ -16,4 +16,10 @@ public class TeacherService {
     public Teacher addTeacher(Teacher teacher){
         return teacherRepository.insert(teacher);
     }
+
+    public Teacher getTeacherByEmailPassword(String email,String password){
+        Teacher teacher = teacherRepository.getTeacherByEmailPassword(email,password);
+        System.out.println(teacher);
+        return teacher;
+    }
 }

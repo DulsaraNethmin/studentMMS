@@ -11,5 +11,12 @@
     <a class="btn btn-primary gs" href="/student/add">Add student</a>
     <a class="btn btn-primary gs" href="/student/show">Show student</a>
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    name=[[${teacher.name}]]
+    alert(name)
+    /*]]>*/
+</script>
 </body>
 </html>

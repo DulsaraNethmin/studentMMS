@@ -52,6 +52,20 @@ public class TeacherController {
     @PostMapping("/login")
     public String login(@ModelAttribute Teacher teacher, BindingResult result, Model model){
         System.out.println(teacher);
-        return "redirect:";
+        try{
+            Teacher tech=teacherService.getTeacherByEmailPassword(teacher.getEmail(),teacher.getPassword());
+            if(tech !=null){
+                System.out.println("login ok");
+                model.addAttribute("teacher",tech);
+                return "teacher-home";
+            }else{
+                System.out.println("login fail");
+                return "login";
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "login";
+        }
+        //return "redirect:";
     }
 }
