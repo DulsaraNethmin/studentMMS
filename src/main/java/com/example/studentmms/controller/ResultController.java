@@ -31,12 +31,16 @@ public class ResultController {
         return "add-result";
     }
 
-    @PostMapping("/result/add")
-    public String addResult(@ModelAttribute Result result, BindingResult res, Model model){
+    @PostMapping("/result/add/{index_no}")
+    public String addResult(@PathVariable String index_no,@ModelAttribute Result result, BindingResult res, Model model){
         try{
             System.out.println(result);
+            Student student =studentService.getStudentById(index_no);
+            System.out.println(student);
+            result.setIndex_no(student.getIndex_no());
+            result.setStudent(student.getName());
             resultService.addResult(result);
-            return "redirect:";
+            return "teacher-home";
         }catch(Exception e){
             System.out.println(e.getMessage());
             return "error";
