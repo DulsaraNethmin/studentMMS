@@ -1,6 +1,7 @@
 package com.example.studentmms.controller;
 
 import com.example.studentmms.model.Result;
+import com.example.studentmms.model.Search;
 import com.example.studentmms.model.Student;
 import com.example.studentmms.service.ResultService;
 import com.example.studentmms.service.StudentService;
@@ -31,12 +32,31 @@ public class ResultController {
         return "add-result";
     }
 
-    @PostMapping("/result/add")
-    public String addResult(@ModelAttribute Result result, BindingResult res, Model model){
+    @PostMapping("/result/add/{index_no}")
+    public String addResult(@PathVariable String index_no,@ModelAttribute Result result, BindingResult res, Model model){
         try{
             System.out.println(result);
+            Student student =studentService.getStudentById(index_no);
+            System.out.println(student);
+            result.setIndex_no(student.getIndex_no());
+            result.setStudent(student.getName());
             resultService.addResult(result);
-            return "redirect:";
+            return "teacher-home";
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping("/search")
+    public String search(@ModelAttribute Search search,BindingResult res,Model model){
+        try{
+            Result result=resultService.search(search);
+            Student student = studentService.getStudentById(result.getIndex_no());
+            model.addAttribute("result",result);
+            model.addAttribute("student",student);
+            System.out.println(result);
+            return "index";
         }catch(Exception e){
             System.out.println(e.getMessage());
             return "error";

@@ -1,5 +1,6 @@
 package com.example.studentmms.controller;
 
+import com.example.studentmms.model.Search;
 import com.example.studentmms.model.Student;
 import com.example.studentmms.model.Teacher;
 import com.example.studentmms.repository.ResultRepository;
@@ -74,7 +75,8 @@ public class TeacherController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout(Model model){
+        model.addAttribute("search",new Search());
         return "index";
     }
 }

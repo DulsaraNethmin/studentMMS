@@ -11,7 +11,7 @@
   <div class="card-body">
     <div class="col-md-10">
       <form  method="post"
-             th:action="@{/result/add}" th:object="${result}" >
+             th:action="@{|/result/add/${student.index_no}|}" th:object="${result}" >
         <div class="row">
 
           <div class="form-group col-md-8">
@@ -62,11 +62,5 @@
     </div>
   </div>
 </div>
-<script th:inline="javascript">
-  /*<![CDATA[*/
-    name=[[${student.name}]]
-    alert(name)
-  /*]]>*/
-</script>
 </body>
 </html>
