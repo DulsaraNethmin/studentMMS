@@ -1,6 +1,7 @@
 package com.example.studentmms.controller;
 
 import com.example.studentmms.model.Result;
+import com.example.studentmms.model.Search;
 import com.example.studentmms.model.Student;
 import com.example.studentmms.service.ResultService;
 import com.example.studentmms.service.StudentService;
@@ -41,6 +42,19 @@ public class ResultController {
             result.setStudent(student.getName());
             resultService.addResult(result);
             return "teacher-home";
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
+    }
+
+    @PostMapping("/search")
+    public String search(@ModelAttribute Search search,BindingResult res,Model model){
+        try{
+            Result result=resultService.search(search);
+            model.addAttribute("result",result);
+            System.out.println(result);
+            return "index";
         }catch(Exception e){
             System.out.println(e.getMessage());
             return "error";

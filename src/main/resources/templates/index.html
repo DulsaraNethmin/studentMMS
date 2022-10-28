@@ -12,11 +12,19 @@
 </div>
 <h2>Search your result</h2>
 <div>
-    <form>
-        <input type="text" placeholder="IndexNumber"/>
-        <input type="number" placeholder="Year"/>
-        <input type="text" placeholder="Index Number"/>
-        <a class="btn btn-primary gs" href="/search" th:type="submit">Search</a>
+    <form th:action="@{/search}" th:object="${search}" method="post">
+        <input type="text" placeholder="IndexNumber" th:field="*{index}"/>
+        <input type="text" placeholder="Year" th:field="*{year}"/>
+        <div class="form-group col-md-8">
+        <select class="form-select" aria-label="Default select example" th:field="*{term}">
+            <option selected value="FIRST_TERM">FIRST_TERM</option>
+            <option value="SECOND_TERM">SECOND_TERM</option>
+            <option value="THIRD_TERM">THIRD_TERM</option>
+        </select>
+        </div>
+        <div class="col-md-6">
+            <input class="btn btn-primary" type="submit" value="Search">
+        </div>
     </form>
 </div>
 <script th:inline="javascript">
