@@ -68,4 +68,9 @@ public class TeacherController {
         }
         //return "redirect:";
     }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "index";
+    }
 }
