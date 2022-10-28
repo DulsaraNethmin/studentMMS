@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -28,10 +29,10 @@ public class StudentController {
         return "add-student";
     }
 
-    @GetMapping("/student/show")
-    public String showStudentshow(Model model){
+    @GetMapping("/student/show/{teacher_id}")
+    public String showStudentshow(@PathVariable String teacher_id, Model model){
         System.out.println("show student");
-        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        List<Student> students= studentService.getStudentBYTeacher(teacher_id);
         System.out.println(students.size());
         model.addAttribute("student",new Student());
         model.addAttribute("students",students);
@@ -45,7 +46,7 @@ public class StudentController {
         //model.addAttribute("Student",new Student());
         try{
             Student res=studentService.addStudent(student);
-            return "redirect:";
+            return "teacher-home";
             //return new ResponseEntity("Success",HttpStatus.OK);
         }catch(Exception e){
             //return new ResponseEntity("Internal Server Error.",HttpStatus.INTERNAL_SERVER_ERROR);
