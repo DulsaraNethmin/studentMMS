@@ -1,5 +1,6 @@
 package com.example.studentmms.controller;
 
+import com.example.studentmms.model.Student;
 import com.example.studentmms.model.Teacher;
 import com.example.studentmms.repository.ResultRepository;
 import com.example.studentmms.repository.StudentRepository;
@@ -9,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,7 +28,8 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(Model model){
+        model.addAttribute("teacher",new Teacher());
         return "login";
     }
 
@@ -42,5 +47,25 @@ public class TeacherController {
             System.out.println(e.getMessage());
             return new ResponseEntity<String>("Internal server error..", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute Teacher teacher, BindingResult result, Model model){
+        System.out.println(teacher);
+        try{
+            Teacher tech=teacherService.getTeacherByEmailPassword(teacher.getEmail(),teacher.getPassword());
+            if(tech !=null){
+                System.out.println("login ok");
+                model.addAttribute("teacher",tech);
+                return "teacher-home";
+            }else{
+                System.out.println("login fail");
+                return "login";
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "login";
+        }
+        //return "redirect:";
     }
 }

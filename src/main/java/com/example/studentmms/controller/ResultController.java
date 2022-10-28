@@ -2,6 +2,7 @@ package com.example.studentmms.controller;
 
 import com.example.studentmms.model.Result;
 import com.example.studentmms.model.Student;
+import com.example.studentmms.service.ResultService;
 import com.example.studentmms.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class ResultController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private ResultService resultService;
     @GetMapping("/add/result/{index_no}")
     public String showAddResult(@PathVariable("index_no") String index_no , Model model){
         System.out.println(index_no);
@@ -27,8 +31,15 @@ public class ResultController {
         return "add-result";
     }
 
-    @PostMapping("/add/result")
+    @PostMapping("/result/add")
     public String addResult(@ModelAttribute Result result, BindingResult res, Model model){
-        return "#";
+        try{
+            System.out.println(result);
+            resultService.addResult(result);
+            return "redirect:";
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
     }
 }
