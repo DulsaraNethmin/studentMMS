@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class TeacherController {
 
@@ -50,13 +52,15 @@ public class TeacherController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute Teacher teacher, BindingResult result, Model model){
+    public String login(@ModelAttribute Teacher teacher, BindingResult result, Model model,HttpSession session){
         System.out.println(teacher);
         try{
             Teacher tech=teacherService.getTeacherByEmailPassword(teacher.getEmail(),teacher.getPassword());
             if(tech !=null){
                 System.out.println("login ok");
                 model.addAttribute("teacher",tech);
+                session.setAttribute("name",tech.getName());
+                session.setAttribute("id",tech.getTeacher_id());
                 return "teacher-home";
             }else{
                 System.out.println("login fail");

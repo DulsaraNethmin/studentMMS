@@ -46,7 +46,7 @@ public class StudentController {
         //model.addAttribute("Student",new Student());
         try{
             Student res=studentService.addStudent(student);
-            return "redirect:";
+            return "teacher-home";
             //return new ResponseEntity("Success",HttpStatus.OK);
         }catch(Exception e){
             //return new ResponseEntity("Internal Server Error.",HttpStatus.INTERNAL_SERVER_ERROR);
