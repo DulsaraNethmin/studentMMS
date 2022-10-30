@@ -7,8 +7,27 @@
 </head>
 <body>
 <h1>Login Page</h1>
+
+<!--/*@thymesVar id="teacher" type=""*/-->
+<form th:action="@{/userLogin}" th:object="${teacher}" method="POST">
+  <div >
+    <label for="email" class="col-5">Email </label>
+    <div class="col-5">
+      <input type="text" class="form-control" id="email" placeholder="email@example.com" th:field="*{email}">
+    </div>
+  </div>
+  <div >
+    <label for="password" class="col-5">Password</label>
+    <div class="col-5">
+      <input type="password" class="form-control" id="password" placeholder="Password" th:field="*{password}">
+    </div>
+  </div>
+</form>
+
 <div>
-  <a class="btn btn-primary gs" href="/teacher/login">Login</a>
+  <a  class="btn btn-primary gs" href="/userLogin">Login</a>
 </div>
+
+
 </body>
 </html>

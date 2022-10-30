@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -24,8 +26,20 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(Model model){
+        Teacher teacher=new Teacher();
+        model.addAttribute("teacher",teacher);
         return "login";
+    }
+
+    @PostMapping("/userLogin")
+    public String loginUser(@ModelAttribute("teacher") Teacher teacher,Model model)
+    {
+
+        model.addAttribute("tea",teacher);
+        System.out.println(teacher.getEmail());
+        System.out.println(teacher.getPassword());
+        return "home ";
     }
 
     @PostMapping("add/teacher")
