@@ -57,14 +57,15 @@ public class StudentController {
 
     @GetMapping("/update/{id}")
     public String handleStudentUpdate(@PathVariable("id") String id,Model model) {
-
-        model.addAttribute("student",studentService.getStudentById(id));
+        Student student =studentService.getStudentById(id);
+        model.addAttribute("student",student);
+        System.out.println(student);
         return "edit-student";
 
     }
 
     @PostMapping("/update/{id}")
-    public String updateStudent(@PathVariable("id") String id,@ModelAttribute("editStudent") Student student,Model model){
+    public String updateStudent(@PathVariable("id") String id,@ModelAttribute Student student,Model model){
         Student s=studentService.getStudentById(id);
         student.setIndex_no(s.getIndex_no());
         student.setTeacher(s.getTeacher());
@@ -73,7 +74,7 @@ public class StudentController {
         studentService.updateStudent(student);
         List<Student> students= studentService.getStudentBYTeacher("t-0011");
         System.out.println(students.size());
-        model.addAttribute("students",students);
-        return "show-student";
+        model.addAttribute("student",student);
+        return "teacher-home";
     }
 }

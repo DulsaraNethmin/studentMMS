@@ -11,7 +11,7 @@
   <div>
     <h1>Update Student</h1>
     <br>
-    <form th:action="@{/update/{id}(id=*{id})}" th:object="${editStudent}" method="POST">
+    <form th:action="@{|/update/${student.index_no}|}" th:object="${student}" method="POST">
       <table>
         <tr>
           <td>

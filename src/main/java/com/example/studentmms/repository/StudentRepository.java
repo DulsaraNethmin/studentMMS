@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface StudentRepository extends MongoRepository<Student,String> {
 
@@ -14,4 +15,5 @@ public interface StudentRepository extends MongoRepository<Student,String> {
 
     @Query("{'index_no': ?0}")
     Student getStudentById(String index_no);
+
 }
