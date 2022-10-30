@@ -58,7 +58,7 @@ public class StudentController {
     @GetMapping("/update/{id}")
     public String handleStudentUpdate(@PathVariable("id") String id,Model model) {
 
-        model.addAttribute("editStudent",studentService.getStudentById(id));
+        model.addAttribute("student",studentService.getStudentById(id));
         return "edit-student";
 
     }
