@@ -7,7 +7,7 @@
 </head>
 <body>
 <h2>All results - <span th:text="${student.getName()}"/></h2>
-<table class="table" th:if="${results}">
+<table class="table">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -30,9 +30,11 @@
         <td th:text="${result.marks[0]}"/>
         <td th:text="${result.marks[1]}"/>
         <td th:text="${result.marks[2]}"/>
-        <td> <a  class="btn btn-primary gs" th:href="@{/update/result/{index_no}(index_no=${student.index_no})}">Update result</a></td>
+        <td> <a  class="btn btn-primary gs" th:href="@{/update/result/{index_no}/{year}/{term}(index_no=${student.index_no},year=${result.year},term=${result.term})}">Update result</a></td>
     </tr>
     </tbody>
 </table>
+
+
 </body>
 </html>

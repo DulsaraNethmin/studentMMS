@@ -3,6 +3,7 @@ package com.example.studentmms.controller;
 import com.example.studentmms.model.Result;
 import com.example.studentmms.model.Search;
 import com.example.studentmms.model.Student;
+import com.example.studentmms.model.Term;
 import com.example.studentmms.service.ResultService;
 import com.example.studentmms.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +75,13 @@ public class ResultController {
         return "show-result";
     }
 
-    @GetMapping("/update/result/{index_no}")
-    public String updateResult(@PathVariable String index_no,Model model){
+    @GetMapping("/update/result/{index_no}/{year}/{term}")
+    public String updateResult(@PathVariable String index_no,@PathVariable String year,@PathVariable Term term, Model model){
+        System.out.println(index_no+" "+year+" "+term);
         Student student = studentService.getStudentById(index_no);
+        Result result = resultService.search(new Search(index_no,year,term));
         model.addAttribute("student",student);
+        model.addAttribute("result",result);
         return "update-result";
     }
 }
