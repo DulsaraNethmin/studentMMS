@@ -1,5 +1,6 @@
 package com.example.studentmms.service;
 
+import com.example.studentmms.model.Result;
 import com.example.studentmms.model.Student;
 import com.example.studentmms.model.Subject;
 import com.example.studentmms.repository.StudentRepository;
@@ -29,4 +30,5 @@ public class StudentService {
         Student student = studentRepository.getStudentById(index_no);
         return student;
     }
+
 }

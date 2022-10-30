@@ -6,6 +6,64 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h2>Update result page</h2>
+<h4>Current Result - <span th:text="${student.name}"/></h4>
+<table class="table" th:if="${result}">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Index</th>
+        <th scope="col">Year</th>
+        <th scope="col">Term</th>
+        <th scope="col" th:text="${student.subjects[0]}"></th>
+        <th scope="col" th:text="${student.subjects[1]}"></th>
+        <th scope="col" th:text="${student.subjects[2]}"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">1</th>
+        <td th:text="${result.index_no}"/>
+        <td th:text="${result.year}"/>
+        <td th:text="${result.term}"/>
+        <td th:text="${result.marks[0]}"/>
+        <td th:text="${result.marks[1]}"/>
+        <td th:text="${result.marks[2]}"/>
+    </tr>
+    </tbody>
+</table>
+
+<div class="card">
+    <div class="card-body">
+        <div class="col-md-10">
+            <form  method="post"
+                   th:action="@{/update/result/{index_no}/{year}/{term}(index_no=${student.index_no},year=${result.year},term=${result.term})}" th:object="${result}" >
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label class="col-form-label" >Add new result</label>
+                    </div>
+                    <br/>
+                    <div class="form-group col-md-8">
+                        <label class="col-form-label" th:text="${student.subjects[0]}"/>
+                        <input class="form-control" id="sub1" placeholder="Result" th:field="*{marks}" type="number">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="col-form-label" th:text="${student.subjects[1]}"/>
+                        <input class="form-control" id="sub2" placeholder="Result" th:field="*{marks}" type="number">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="col-form-label" th:text="${student.subjects[2]}"/>
+                        <input class="form-control" id="sub3" placeholder="Result" th:field="*{marks}" type="number">
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="btn btn-primary" type="submit" value="Update">
+                    </div>
+
+                    <div class="form-group col-md-8"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

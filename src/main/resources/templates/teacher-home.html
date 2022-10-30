@@ -18,7 +18,7 @@
     ><h1>Teacher Dashboard - <span th:text="${session.name}"/></h1></div>
 
     <div class="text-center"><br/><br/>
-        <a class="btn btn-primary gs  mb-1" href="/student/add p-5"> <h3>Add student</h3> </a><br/><br/>
+        <a class="btn btn-primary gs  mb-1" href="/student/add"> <h3>Add student</h3> </a><br/><br/>
         <a class="btn btn-primary gs  mb-1" th:href="@{|/student/show/${session.id}|}"><h3>Show student</h3></a><br/><br/>
         <a class="btn btn-primary gs mb-1" href="/logout" ><h3>Logout</h3></a><br/><br/>
     </div>
