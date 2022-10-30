@@ -54,4 +54,26 @@ public class StudentController {
         }
         //return "index";
     }
+
+    @GetMapping("/update/{id}")
+    public String handleStudentUpdate(@PathVariable("id") String id,Model model) {
+
+        model.addAttribute("editStudent",studentService.getStudentById(id));
+        return "edit_student";
+
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateStudent(@PathVariable("id") String id,@ModelAttribute("editStudent") Student student,Model model){
+        Student s=studentService.getStudentById(id);
+        student.setIndex_no(s.getIndex_no());
+        student.setTeacher(s.getTeacher());
+        student.setSubjects(s.getSubjects());
+        student.setSchool(s.getSchool());
+        studentService.updateStudent(student);
+        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        System.out.println(students.size());
+        model.addAttribute("students",students);
+        return "show-student";
+    }
 }
