@@ -15,6 +15,9 @@
     <th scope="col">Name</th>
     <th scope="col">Add result</th>
     <th scope="col">Show result</th>
+    <th scope="col">update Student</th>
+    <th scope="col">Delete Student</th>
+
   </tr>
   </thead>
   <tbody>
@@ -24,6 +27,8 @@
     <td th:text="${std.name}"/>
     <td> <a  class="btn btn-primary gs" th:href="@{/add/result/{index_no}(index_no=${std.index_no})}">Add result</a></td>
     <td> <a  class="btn btn-primary gs" th:href="@{/show/result/{index_no}(index_no=${std.index_no})}">Show result</a></td>
+    <td> <a  class="btn btn-primary gs" th:href="@{/update/{index_no}(index_no=${std.index_no})}">Update Student</a></td>
+    <td> <a  class="btn btn-primary gs" th:href="@{/delete/{index_no}(index_no=${std.index_no})}">Delete Student</a></td>
   </tr>
   </tbody>
 </table>
