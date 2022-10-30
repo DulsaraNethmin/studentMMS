@@ -6,63 +6,60 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<br><h1 class="text-center"><b>Add Result</b></h1><br>
-<div class="row justify-content-center ">
-<div class="card">
-  <div class="card-body">
-    <div class="col-md-10">
-      <form  method="post"
-             th:action="@{|/result/add/${student.index_no}|}" th:object="${result}" >
-        <div class="row">
+  <br><h1 class="text-center"><b>Add Result</b></h1><br>
+  <div class="row justify-content-center ">
 
-          <div class="form-group col-md-8">
-            <label class="col-form-label" />
-          </div>
 
-          <div class="form-group col-md-8">
-            <label class="col-form-label" />
-          </div>
+          <form  class="col-md-5" method="post"
+              th:action="@{|/result/add/${student.index_no}|}" th:object="${result}" >
 
-          <div class="form-group col-md-8">
-            <input class="form-control" id="year" placeholder="Year" th:field="*{year}" type="number">
-          </div>
 
-          <div class="form-group col-md-8">
-            <select class="form-select" aria-label="Default select example" th:field="*{term}">
-              <option selected value="FIRST_TERM">FIRST_TERM</option>
-              <option value="SECOND_TERM">SECOND_TERM</option>
-              <option value="THIRD_TERM">THIRD_TERM</option>
-            </select>
-          </div>
+            <div class="form-group md-6">
+              <label class="col-form-label" >
+            </div>
 
-          <br/>
-          <div class="form-group col-md-8">
-            <label class="col-form-label" >Add result</label>
-          </div>
-          <br/>
-          <div class="form-group col-md-8">
-            <label class="col-form-label" th:text="${student.subjects[0]}"/>
-            <input class="form-control" id="sub1" placeholder="Result" th:field="*{marks}" type="number">
-          </div>
-          <div class="form-group col-md-8">
-            <label class="col-form-label" th:text="${student.subjects[1]}"/>
-            <input class="form-control" id="sub2" placeholder="Result" th:field="*{marks}" type="number">
-          </div>
-          <div class="form-group col-md-8">
-            <label class="col-form-label" th:text="${student.subjects[2]}"/>
-            <input class="form-control" id="sub3" placeholder="Result" th:field="*{marks}" type="number">
-          </div>
+            <div class="form-group md-6">
+              <label class="col-form-label" />
+            </div>
 
-        <div class="col-md-6">
-          <input class="btn btn-primary" type="submit" value="Add">
-        </div>
+            <div class="form-group md-6">
+              <input class="form-control" id="year" placeholder="Year" th:field="*{year}" type="number">
+            </div><br>
 
-        <div class="form-group col-md-8"></div>
-        </div>
+            <div class="form-group md-6">
+              <select class="form-select" aria-label="Default select example" th:field="*{term}">
+                <option selected value="FIRST_TERM">FIRST_TERM</option>
+                <option value="SECOND_TERM">SECOND_TERM</option>
+                <option value="THIRD_TERM">THIRD_TERM</option>
+              </select>
+            </div>
+
+            <br/>
+            <div class="form-group md-6">
+              <label class="col-form-label" >Add result</label>
+            </div>
+
+            <div class="form-group md-6">
+              <label class="col-form-label" th:text="${student.subjects[0]}"/>
+              <input class="form-control" id="sub1" placeholder="Result" th:field="*{marks}" type="number">
+            </div>
+            <div class="form-group md-6">
+              <label class="col-form-label" th:text="${student.subjects[1]}"/>
+              <input class="form-control" id="sub2" placeholder="Result" th:field="*{marks}" type="number">
+            </div>
+            <div class="form-group md-6">
+              <label class="col-form-label" th:text="${student.subjects[2]}"/>
+              <input class="form-control" id="sub3" placeholder="Result" th:field="*{marks}" type="number">
+            </div><br>
+
+            <div class="text-center">
+              <input class="btn btn-primary" type="submit" value="Add">
+            </div>
+
+
       </form>
-    </div>
+
   </div>
-</div>
-</div>
+
 </body>
 </html>
