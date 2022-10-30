@@ -9,21 +9,23 @@
 <body>
 
 <div>
-    <div  class="bg-image p-5 shadow-1-strong"
-          style="background-image: url('https://t3.ftcdn.net/jpg/05/00/34/58/360_F_500345899_4OqmtspFst6SRnNQvLj7h7TfKOrBwTer.jpg')"
+    <div  class="bg-image p-0 shadow-1-strong mb-0"
+          style="background-image: url('https://t3.ftcdn.net/jpg/05/00/34/58/360_F_500345899_4OqmtspFst6SRnNQvLj7h7TfKOrBwTer.jpg'); height: 100vh"
+
     >
 
-    <div  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
-         style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp')"
-    ><h1>Teacher Dashboard - <span th:text="${session.name}"/></h1></div>
+        <div  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+              style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp')"
+        ><h1>Teacher Dashboard - <span th:text="${session.name}"/></h1></div>
 
-    <div class="text-center"><br/><br/>
-        <a class="btn btn-primary gs  mb-1" href="/student/add"> <h3>Add student</h3> </a><br/><br/>
-        <a class="btn btn-primary gs  mb-1" th:href="@{|/student/show/${session.id}|}"><h3>Show student</h3></a><br/><br/>
-        <a class="btn btn-primary gs mb-1" href="/logout" ><h3>Logout</h3></a><br/><br/>
+        <div class=" d-flex justify-content-center">
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group "><br/><br/>
+                <a type="button" class="btn btn-secondary btn-lg btn-block  justify-content-center" href="/student/add"> <h3>Add student</h3> </a><br/><br/>
+                <a type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{|/student/show/${session.id}|}"><h3>Show student</h3></a><br/><br/>
+                <a type="button" class="btn btn-secondary btn-lg btn-block" href="/logout" ><h3>Logout</h3></a><br/><br/>
+            </div></div>
+
     </div>
-
-</div>
 
 </body>
 </html>
