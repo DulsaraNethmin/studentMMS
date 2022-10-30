@@ -59,7 +59,7 @@ public class StudentController {
     public String handleStudentUpdate(@PathVariable("id") String id,Model model) {
 
         model.addAttribute("editStudent",studentService.getStudentById(id));
-        return "edit_student";
+        return "edit-student";
 
     }
 
