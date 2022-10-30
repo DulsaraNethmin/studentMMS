@@ -30,5 +30,11 @@ public class StudentService {
         Student student = studentRepository.getStudentById(index_no);
         return student;
     }
+    public void updateStudent(Student student) {
+        studentRepository.save(student);
+    }
+    public void deleteStudent(String index){
+      studentRepository.deleteById(index);
+    }
 
 }

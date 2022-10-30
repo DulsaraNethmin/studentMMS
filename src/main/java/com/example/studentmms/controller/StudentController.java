@@ -9,10 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -53,5 +50,35 @@ public class StudentController {
             return "error";
         }
         //return "index";
+
+    }
+    @GetMapping("/update/{index_no}")
+    public String handleStudentUpdate(@PathVariable("index_no") String index,Model model) {
+        System.out.println(studentService.getStudentById(index));
+        model.addAttribute("editStudent",studentService.getStudentById(index));
+        return "edit-student";
+
+    }
+
+    @PostMapping("/update/{index_no}")
+    public String updateStudent(@PathVariable("index_no") String id,@ModelAttribute("editStudent") Student student,Model model){
+        Student s=studentService.getStudentById(id);
+        s.setName(student.getName());
+        System.out.println(s);
+        studentService.updateStudent(s);
+        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        System.out.println(students.size());
+        model.addAttribute("students",students);
+        return "show-student";
+    }
+    @DeleteMapping("delete/{index_no}")
+    public String deleteStudentby(@PathVariable("index_no") String id,Model model){
+        Student s=studentService.getStudentById(id);
+        System.out.println(s);
+        studentService.deleteStudent(s.getIndex_no());
+        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        System.out.println(students.size());
+        model.addAttribute("students",students);
+        return "show-student";
     }
 }
