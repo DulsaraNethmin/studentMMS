@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class ResultController {
 
@@ -61,5 +63,14 @@ public class ResultController {
             System.out.println(e.getMessage());
             return "error";
         }
+    }
+
+    @GetMapping("/show/result/{index_no}")
+    public String showResultPage(@PathVariable String index_no,Model model){
+        Student student =studentService.getStudentById(index_no);
+        List<Result> results = resultService.getAllResult(index_no);
+        model.addAttribute("results",results);
+        model.addAttribute("student",student);
+        return "show-result";
     }
 }

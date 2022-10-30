@@ -6,6 +6,8 @@ import com.example.studentmms.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResultService {
 
@@ -19,5 +21,10 @@ public class ResultService {
     public Result search(Search search){
         System.out.println(search);
         return resultRepository.search(search.getIndex(),search.getYear(),search.getTerm());
+    }
+
+    public List<Result> getAllResult(String index_no){
+        List<Result> results = resultRepository.getAllResult(index_no);
+        return results;
     }
 }
