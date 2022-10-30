@@ -9,8 +9,8 @@
 </head>
 <body>
 
-<div  class="bg-image p-5 shadow-1-strong"
-      style="background-image: url('https://t3.ftcdn.net/jpg/05/00/34/58/360_F_500345899_4OqmtspFst6SRnNQvLj7h7TfKOrBwTer.jpg')"
+<div  class="bg-image w-auto shadow-1-strong"
+      style="background-image: url('https://t3.ftcdn.net/jpg/05/00/34/58/360_F_500345899_4OqmtspFst6SRnNQvLj7h7TfKOrBwTer.jpg'); height: 100vh;"
 >
 <h1 class="text-center">Home Page</h1><br>
 
@@ -24,7 +24,7 @@
         <input class="p-2 bg-light border" type="text" placeholder="IndexNumber" th:field="*{index}"/>
         <input class="p-2 bg-light border" type="text" placeholder="Year" th:field="*{year}"/>
 
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
         <select class="form-select" aria-label="Default select example" th:field="*{term}">
             <option selected value="FIRST_TERM">FIRST_TERM</option>
             <option value="SECOND_TERM">SECOND_TERM</option>
