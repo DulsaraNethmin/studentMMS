@@ -2,15 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Teacher Dashboard</title>
+    <title >Teacher Dashboard</title>
+    <link rel="stylesheet" href="teacher-home.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h1>Teacher Dashboard - <span th:text="${session.name}"/></h1>
+
 <div>
-    <a class="btn btn-primary gs" href="/student/add">Add student</a>
-    <a class="btn btn-primary gs" th:href="@{|/student/show/${session.id}|}">Show student</a>
-    <a class="btn btn-primary gs" href="/logout" >Logout</a>
+    <div  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
+         style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp')"
+    ><h1>Teacher Dashboard - <span th:text="${session.name}"/></h1></div>
+
+    <div class="text-center"><br/><br/>
+        <a class="btn btn-primary gs  mb-1" href="/student/add p-5"> <h3>Add student</h3> </a><br/><br/>
+        <a class="btn btn-primary gs  mb-1" th:href="@{|/student/show/${session.id}|}"><h3>Show student</h3></a><br/><br/>
+        <a class="btn btn-primary gs mb-1" href="/logout" ><h3>Logout</h3></a><br/><br/>
+    </div>
+
 </div>
 
 </body>
