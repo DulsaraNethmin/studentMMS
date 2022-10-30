@@ -71,14 +71,19 @@ public class StudentController {
         model.addAttribute("students",students);
         return "show-student";
     }
-    @DeleteMapping("delete/{index_no}")
-    public String deleteStudentby(@PathVariable("index_no") String id,Model model){
-        Student s=studentService.getStudentById(id);
-        System.out.println(s);
-        studentService.deleteStudent(s.getIndex_no());
-        List<Student> students= studentService.getStudentBYTeacher("t-0011");
-        System.out.println(students.size());
-        model.addAttribute("students",students);
-        return "show-student";
+    @GetMapping("delete/{index_no}")
+    public String deleteStudentby(@PathVariable("index_no") String id,Model model) {
+        try {
+            Student s = studentService.getStudentById(id);
+            System.out.println(s);
+            studentService.deleteStudent(s.getId());
+            List<Student> students = studentService.getStudentBYTeacher(s.getTeacher());
+            System.out.println(students.size());
+            model.addAttribute("students", students);
+            return "show-student";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "error";
+        }
     }
 }
