@@ -36,7 +36,7 @@
     <div class="card-body">
         <div class="col-md-10">
             <form  method="post"
-                   th:action="@{|/update/result/${student.index_no}|}" th:object="${result}" >
+                   th:action="@{/update/result/{index_no}/{year}/{term}(index_no=${student.index_no},year=${result.year},term=${result.term})}" th:object="${result}" >
                 <div class="row">
                     <div class="form-group col-md-8">
                         <label class="col-form-label" >Add new result</label>

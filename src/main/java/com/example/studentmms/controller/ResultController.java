@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -83,5 +80,22 @@ public class ResultController {
         model.addAttribute("student",student);
         model.addAttribute("result",result);
         return "update-result";
+    }
+
+    @PostMapping("/update/result/{index_no}/{year}/{term}")
+    public String updateResult(@PathVariable String index_no,@PathVariable String year,@PathVariable Term term,@ModelAttribute Result result,BindingResult res, Model model){
+        System.out.println("updateing...");
+
+        //System.out.println(result);
+        Result pre_result= resultService.search(new Search(index_no,year,term));
+        System.out.println(pre_result);
+        pre_result.setMarks(result.getMarks());
+        Result updated_result=resultService.updateResult(pre_result);
+        Student student =studentService.getStudentById(index_no);
+        List<Result> results = resultService.getAllResult(index_no);
+        model.addAttribute("results",results);
+        model.addAttribute("student",student);
+        //model.addAttribute("student",student);
+        return "show-result";
     }
 }

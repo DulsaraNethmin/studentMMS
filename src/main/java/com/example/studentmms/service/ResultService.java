@@ -27,4 +27,8 @@ public class ResultService {
         List<Result> results = resultRepository.getAllResult(index_no);
         return results;
     }
+
+    public Result updateResult(Result result){
+        return resultRepository.save(result);
+    }
 }
