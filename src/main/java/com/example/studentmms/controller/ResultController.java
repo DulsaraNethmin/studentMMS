@@ -73,4 +73,11 @@ public class ResultController {
         model.addAttribute("student",student);
         return "show-result";
     }
+
+    @GetMapping("/update/result/{index_no}")
+    public String updateResult(@PathVariable String index_no,Model model){
+        Student student = studentService.getStudentById(index_no);
+        model.addAttribute("student",student);
+        return "update-result";
+    }
 }
