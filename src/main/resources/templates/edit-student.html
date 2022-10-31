@@ -8,22 +8,25 @@
 </head>
 <body>
 <div class="container">
-  <div>
-    <h1>Update Student</h1>
-    <br>
-    <form th:action="@{/update/{index_no}(index_no=*{index_no})}" th:object="${editStudent}" method="POST">
-      <table>
+  <h1 class="text-center"><b>Update Student</b></h1>
+  <br><br>
+  <div class="row justify-content-center">
+    <form class="col-md-5" th:action="@{/update/{index_no}(index_no=*{index_no})}" th:object="${editStudent}" method="POST">
+      <table class="table text-center">
         <tr>
-          <td>
-            Name
+          <td class="text-center">
+            Name:
           </td>
-          <td>
-            <input type="text" name="name" th:field="*{name}"/>
+          <td >
+            <input class="text-center" type="text" name="name" th:field="*{name}"/>
           </td>
 
         </tr>
       </table>
-      <input type="submit" value="Submit"/>
+      <br><div class="text-center">
+      <input class="btn btn-primary" type="submit" value="Submit"/>
+    </div>
+
     </form>
   </div>
 </div>
