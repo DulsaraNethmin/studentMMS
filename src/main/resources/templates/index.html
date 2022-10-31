@@ -12,61 +12,64 @@
 <div  class="bg-image w-auto shadow-1-strong"
       style="background-image: url('https://t3.ftcdn.net/jpg/05/00/34/58/360_F_500345899_4OqmtspFst6SRnNQvLj7h7TfKOrBwTer.jpg'); height: 100vh;"
 >
-<h1 class="text-center">Home Page</h1><br>
+    <div>
+        <br><div class="position-absolute top-5% end-0 p-3 ">
+        <a class="btn btn-primary gs" href="/login">Teacher Login</a>
+    </div><br><br>
+        <h1 class="text-center"><b>Student Marks Management System</b></h1><br>
+        <h3 class="text-center">Search your result</h3><br><br>
 
-<div class="text-center">
-    <a class="btn btn-primary gs" href="/login">Teacher Login</a>
-</div><br>
-<h2 class="text-center">Search your result</h2><br><br>
+        <form class="mx-auto" style="width: 550px;" th:action="@{/search}" th:object="${search}" method="post">
+            <div class="row">
+                <input class="col-md-4 p-1 bg-light border" type="text" placeholder="IndexNumber" th:field="*{index}"/>
+                <input class="col-md-4 p-1  bg-light border" type="text" placeholder="Year" th:field="*{year}"/>
 
-    <form class="mx-auto" style="width: 550px;" th:action="@{/search}" th:object="${search}" method="post">
+                <div class="form-group col-md-4 m-0 bg-light ">
+                    <select class="form-select" aria-label="Default select example" th:field="*{term}">
+                        <option selected value="FIRST_TERM">FIRST_TERM</option>
+                        <option value="SECOND_TERM">SECOND_TERM</option>
+                        <option value="THIRD_TERM">THIRD_TERM</option>
+                    </select>
+                </div><br>
+            </div><br>
+            <div  class="text-center">
+                <input class="btn btn-primary" type="submit" value="Search">
+            </div><br>
+        </form>
 
-        <input class="p-2 bg-light border" type="text" placeholder="IndexNumber" th:field="*{index}"/>
-        <input class="p-2 bg-light border" type="text" placeholder="Year" th:field="*{year}"/>
-
-        <div class="form-group col-md-4">
-        <select class="form-select" aria-label="Default select example" th:field="*{term}">
-            <option selected value="FIRST_TERM">FIRST_TERM</option>
-            <option value="SECOND_TERM">SECOND_TERM</option>
-            <option value="THIRD_TERM">THIRD_TERM</option>
-        </select>
-        </div><br>
-        <div  class="text-center">
-            <input class="btn btn-primary" type="submit" value="Search">
-        </div><br>
-    </form>
-
-<table class="table" th:if="${result}">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Index</th>
-        <th scope="col">Year</th>
-        <th scope="col">Term</th>
-        <th scope="col" th:text="${student.subjects[0]}"></th>
-        <th scope="col" th:text="${student.subjects[1]}"></th>
-        <th scope="col" th:text="${student.subjects[2]}"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td th:text="${result.index_no}"/>
-        <td th:text="${result.year}"/>
-        <td th:text="${result.term}"/>
-        <td th:text="${result.marks[0]}"/>
-        <td th:text="${result.marks[1]}"/>
-        <td th:text="${result.marks[2]}"/>
-    </tr>
-    </tbody>
-</table>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    localStorage.removeItem("name")
-    localStorage.removeItem("teacher_id")
-    //alert(name)
-    /*]]>*/
-</script>
+        <table class="table" th:if="${result}">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Index</th>
+                <th scope="col">Year</th>
+                <th scope="col">Term</th>
+                <th scope="col" th:text="${student.subjects[0]}"></th>
+                <th scope="col" th:text="${student.subjects[1]}"></th>
+                <th scope="col" th:text="${student.subjects[2]}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td th:text="${result.index_no}"/>
+                <td th:text="${result.year}"/>
+                <td th:text="${result.term}"/>
+                <td th:text="${result.marks[0]}"/>
+                <td th:text="${result.marks[1]}"/>
+                <td th:text="${result.marks[2]}"/>
+            </tr>
+            </tbody>
+        </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            localStorage.removeItem("name")
+            localStorage.removeItem("teacher_id")
+            //alert(name)
+            /*]]>*/
+        </script>
+    </div>
 </div>
 </body>
 </html>
+
