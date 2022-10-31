@@ -26,8 +26,8 @@
     <td th:text="${std.index_no}"/>
     <td th:text="${std.name}"/>
     <td> <a  class="btn btn-primary gs" th:href="@{/add/result/{index_no}(index_no=${std.index_no})}">Add result</a></td>
-    <td> <a  class="btn btn-secondary gs" th:href="@{/show/result/{index_no}(index_no=${std.index_no})}">Show result</a></td>
-    <td> <a  class="btn btn-info gs" th:href="@{/update/{index_no}(index_no=${std.index_no})}">Update Student</a></td>
+    <td> <a  class="btn btn-primary gs" th:href="@{/show/result/{index_no}(index_no=${std.index_no})}">Show result</a></td>
+    <td> <a  class="btn btn-primary gs" th:href="@{/update/{index_no}(index_no=${std.index_no})}">Update Student</a></td>
     <td> <a  class="btn btn-danger gs" th:href="@{/delete/{index_no}(index_no=${std.index_no})}">Delete Student</a></td>
   </tr>
   </tbody>
