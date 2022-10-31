@@ -37,8 +37,14 @@ public class TeacherController {
     }
 
     @GetMapping("teacher/home")
-    public String teacherHome(){
-        return "teacher-home";
+    public String teacherHome(HttpSession session){
+        String n= session.getAttribute("name").toString();
+        if(n!=null){
+            return "teacher-home";
+        }else{
+            return "index";
+        }
+
     }
 
     @PostMapping("add/teacher")
@@ -75,8 +81,10 @@ public class TeacherController {
     }
 
     @GetMapping("/logout")
-    public String logout(Model model){
+    public String logout(Model model,HttpSession session){
         model.addAttribute("search",new Search());
+        session.removeAttribute("name");
+        session.removeAttribute("id");
         return "index";
     }
 }
