@@ -18,6 +18,7 @@
         <th scope="col" th:text="${student.subjects[1]}"></th>
         <th scope="col" th:text="${student.subjects[2]}"></th>
         <th scope="col">Update Result</th>
+        <th scope="col">Delete Result</th>
 
     </tr>
     </thead>
@@ -31,6 +32,7 @@
         <td th:text="${result.marks[1]}"/>
         <td th:text="${result.marks[2]}"/>
         <td> <a  class="btn btn-primary gs" th:href="@{/update/result/{index_no}/{year}/{term}(index_no=${student.index_no},year=${result.year},term=${result.term})}">Update result</a></td>
+        <td> <a  class="btn btn-danger gs" th:href="@{/delete/result/{index_no}/{year}/{term}(index_no=${student.index_no},year=${result.year},term=${result.term})}">Delete result</a></td>
     </tr>
     </tbody>
 </table>

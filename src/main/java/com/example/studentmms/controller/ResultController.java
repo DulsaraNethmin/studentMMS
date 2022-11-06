@@ -98,4 +98,16 @@ public class ResultController {
         //model.addAttribute("student",student);
         return "show-result";
     }
+
+    @GetMapping("/delete/result/{index_no}/{year}/{term}")
+    public String deleteResult(@PathVariable String index_no,@PathVariable String year,@PathVariable Term term,Model model){
+        Result result= resultService.search(new Search(index_no,year,term));
+        resultService.deleteResult(result);
+        Student student =studentService.getStudentById(index_no);
+        List<Result> results = resultService.getAllResult(index_no);
+        model.addAttribute("results",results);
+        model.addAttribute("student",student);
+        //model.addAttribute("student",student);
+        return "show-result";
+    }
 }

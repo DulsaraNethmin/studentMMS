@@ -31,4 +31,8 @@ public class ResultService {
     public Result updateResult(Result result){
         return resultRepository.save(result);
     }
+
+    public void deleteResult(Result result){
+        resultRepository.delete(result);
+    }
 }
