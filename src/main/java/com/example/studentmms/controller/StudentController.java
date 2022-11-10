@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -61,12 +62,12 @@ public class StudentController {
     }
 
     @PostMapping("/update/{index_no}")
-    public String updateStudent(@PathVariable("index_no") String id,@ModelAttribute("editStudent") Student student,Model model){
+    public String updateStudent(@PathVariable("index_no") String id, @ModelAttribute("editStudent") Student student, Model model, HttpSession session){
         Student s=studentService.getStudentById(id);
         s.setName(student.getName());
         System.out.println(s);
         studentService.updateStudent(s);
-        List<Student> students= studentService.getStudentBYTeacher("t-0011");
+        List<Student> students= studentService.getStudentBYTeacher(session.getAttribute("id").toString());
         System.out.println(students.size());
         model.addAttribute("students",students);
         return "show-student";
