@@ -54,13 +54,13 @@ public class TeacherController {
     }
 
     @PostMapping("/add/teacher")
-    public ResponseEntity<?> addTeacher(@ModelAttribute Teacher teacher, Model model, BindingResult result){
+    public String addTeacher(@ModelAttribute Teacher teacher, Model model, BindingResult result){
         try{
             Teacher res = teacherService.addTeacher(teacher);
-            return new ResponseEntity(res,HttpStatus.OK);
+            return "login";
         }catch(Exception e){
             System.out.println(e.getMessage());
-            return new ResponseEntity<String>("Internal server error..", HttpStatus.INTERNAL_SERVER_ERROR);
+            return "error";
         }
     }
 
