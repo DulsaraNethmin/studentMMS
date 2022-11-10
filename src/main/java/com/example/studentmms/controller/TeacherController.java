@@ -36,6 +36,12 @@ public class TeacherController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String registerPage(Model model){
+        model.addAttribute("teacher",new Teacher());
+        return "register";
+    }
+
     @GetMapping("teacher/home")
     public String teacherHome(HttpSession session){
         String n= session.getAttribute("name").toString();
@@ -47,8 +53,8 @@ public class TeacherController {
 
     }
 
-    @PostMapping("add/teacher")
-    public ResponseEntity<?> addTeacher(@RequestBody Teacher teacher){
+    @PostMapping("/add/teacher")
+    public ResponseEntity<?> addTeacher(@ModelAttribute Teacher teacher, Model model, BindingResult result){
         try{
             Teacher res = teacherService.addTeacher(teacher);
             return new ResponseEntity(res,HttpStatus.OK);
@@ -62,12 +68,13 @@ public class TeacherController {
     public String login(@ModelAttribute Teacher teacher, BindingResult result, Model model,HttpSession session){
         System.out.println(teacher);
         try{
-            Teacher tech=teacherService.getTeacherByEmailPassword(teacher.getEmail(),teacher.getPassword());
-            if(tech !=null){
+            Boolean tech=teacherService.getTeacherByEmailPassword(teacher.getEmail(),teacher.getPassword());
+            if(tech){
+                Teacher t= teacherService.getATeacher(teacher.getEmail());
                 System.out.println("login ok");
                 model.addAttribute("teacher",tech);
-                session.setAttribute("name",tech.getName());
-                session.setAttribute("id",tech.getTeacher_id());
+                session.setAttribute("name",t.getName());
+                session.setAttribute("id",t.getTeacher_id());
                 return "teacher-home";
             }else{
                 System.out.println("login fail");

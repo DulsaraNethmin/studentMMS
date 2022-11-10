@@ -7,6 +7,8 @@ import com.example.studentmms.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +20,9 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
+    PasswordEncoder passwordEncoder;
     public Student addStudent(Student student){
+        this.passwordEncoder=new BCryptPasswordEncoder();
         return studentRepository.insert(student);
     }
 

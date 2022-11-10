@@ -37,11 +37,17 @@ public class ResultController {
         try{
             System.out.println(result);
             Student student =studentService.getStudentById(index_no);
-            System.out.println(student);
-            result.setIndex_no(student.getIndex_no());
-            result.setStudent(student.getName());
-            resultService.addResult(result);
-            return "teacher-home";
+            Result check_result=resultService.search(new Search(student.getIndex_no(),result.getYear(),result.getTerm()));
+            if(check_result==null){
+                System.out.println(student);
+                result.setIndex_no(student.getIndex_no());
+                result.setStudent(student.getName());
+                resultService.addResult(result);
+                return "teacher-home";
+            }
+            model.addAttribute("student",student);
+            model.addAttribute("result",new Result());
+            return "add-result";
         }catch(Exception e){
             System.out.println(e.getMessage());
             return "error";

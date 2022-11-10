@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TeacherRepository extends MongoRepository<Teacher,String> {
-    @Query("{'email':?0 ,'password': ?1}")
-    Teacher getTeacherByEmailPassword(String email,String password);
+    @Query("{'email':?0}")
+    Teacher getTeacherByEmailPassword(String email);
 }
