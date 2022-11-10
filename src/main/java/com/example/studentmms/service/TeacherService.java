@@ -19,6 +19,7 @@ public class TeacherService {
 
     public Teacher getTeacherByEmailPassword(String email,String password){
         Teacher teacher = teacherRepository.getTeacherByEmailPassword(email,password);
+        /*Take the email and pw passed from teacher repository and pass to controller*/
         System.out.println(teacher);
         return teacher;
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TeacherRepository extends MongoRepository<Teacher,String> {
+    /*If there are data, then it returns to teacher service*/
     @Query("{'email':?0 ,'password': ?1}")
     Teacher getTeacherByEmailPassword(String email,String password);
 }

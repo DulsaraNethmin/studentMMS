@@ -9,10 +9,12 @@
 <h1>Home Page</h1>
 <div>
     <a class="btn btn-primary gs" href="/login">Teacher Login</a>
+    <!--call this api(/login)-->
 </div>
 <h2>Search your result</h2>
 <div>
     <form th:action="@{/search}" th:object="${search}" method="post">
+        <!--Call this api-->
         <input type="text" placeholder="IndexNumber" th:field="*{index}"/>
         <input type="text" placeholder="Year" th:field="*{year}"/>
         <div class="form-group col-md-8">

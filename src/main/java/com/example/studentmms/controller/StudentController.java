@@ -29,7 +29,7 @@ public class StudentController {
         return "add-student";
     }
 
-    @GetMapping("/student/show/{teacher_id}")
+    @GetMapping("/student/show/{teacher_id}") /*@PathVariable:- To store teacher id use teacher_id and give it to {teacher_id}*/
     public String showStudentshow(@PathVariable String teacher_id, Model model){
         System.out.println("show student");
         List<Student> students= studentService.getStudentBYTeacher(teacher_id);

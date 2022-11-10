@@ -17,12 +17,14 @@
     <div  class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
          style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp')"
     ><h1>Teacher Dashboard - <span th:text="${session.name}"/></h1></div>
+        <!--Take name from previous session-->
 
     <div class=" d-flex justify-content-center">
         <div class="btn-group-vertical" role="group" aria-label="Vertical button group "><br/><br/>
         <button type="button" class="btn btn-secondary btn-lg btn-block  justify-content-center" href="/student/add p-5 "> <h3>Add student</h3> </button><br/><br/>
         <button type="button" class="btn btn-secondary btn-lg btn-block" th:href="@{|/student/show/${session.id}|}"><h3>Show student</h3></button><br/><br/>
-        <button type="button" class="btn btn-secondary btn-lg btn-block" href="/logout" ><h3>Logout</h3></button><br/><br/>
+            <!--@ is put links--> <!--Thymeleaf:- to change frontend dynamically-->
+            <button type="button" class="btn btn-secondary btn-lg btn-block" href="/logout" ><h3>Logout</h3></button><br/><br/>
     </div></div>
 
 </div>
